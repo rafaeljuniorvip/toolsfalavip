@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ToolPageLayout from '../components/shared/ToolPageLayout'
 import DropZone from '../components/ui/DropZone'
 import Card from '../components/ui/Card'
@@ -23,8 +23,24 @@ export default function Convert() {
   const [format, setFormat] = useState('png')
   const [quality, setQuality] = useState(92)
   const [processing, setProcessing] = useState(false)
+  const [estimatedSize, setEstimatedSize] = useState(null)
+  const estimateTimer = useRef(null)
 
   const isLossy = format === 'jpg' || format === 'webp'
+
+  useEffect(() => {
+    if (!originalImage) return
+    clearTimeout(estimateTimer.current)
+    estimateTimer.current = setTimeout(async () => {
+      try {
+        const canvas = imageToCanvas(originalImage)
+        const mime = getMimeType(format)
+        const blob = await canvasToBlob(canvas, mime, isLossy ? quality / 100 : undefined)
+        setEstimatedSize(blob.size)
+      } catch { setEstimatedSize(null) }
+    }, 300)
+    return () => clearTimeout(estimateTimer.current)
+  }, [originalImage, format, quality])
 
   const handleFiles = async ([file]) => {
     if (file) await loadImage(file)
@@ -80,6 +96,12 @@ export default function Convert() {
             {isLossy && (
               <Card>
                 <Slider label="Qualidade" value={quality} onChange={setQuality} min={10} max={100} unit="%" />
+              </Card>
+            )}
+
+            {estimatedSize && (
+              <Card>
+                <p className="text-xs text-slate-500">Tamanho estimado: ~{formatFileSize(estimatedSize)}</p>
               </Card>
             )}
 

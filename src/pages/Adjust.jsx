@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ToolPageLayout from '../components/shared/ToolPageLayout'
 import DropZone from '../components/ui/DropZone'
 import Card from '../components/ui/Card'
@@ -15,12 +15,32 @@ export default function Adjust() {
   const [contrast, setContrast] = useState(100)
   const [saturate, setSaturate] = useState(100)
   const [processing, setProcessing] = useState(false)
+  const [estimatedSize, setEstimatedSize] = useState(null)
+  const estimateTimer = useRef(null)
 
   const handleFiles = async ([file]) => {
     if (file) await loadImage(file)
   }
 
   const filterString = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%)`
+
+  useEffect(() => {
+    if (!originalImage) return
+    clearTimeout(estimateTimer.current)
+    estimateTimer.current = setTimeout(async () => {
+      try {
+        const canvas = document.createElement('canvas')
+        canvas.width = originalImage.naturalWidth
+        canvas.height = originalImage.naturalHeight
+        const ctx = canvas.getContext('2d')
+        ctx.filter = filterString
+        ctx.drawImage(originalImage, 0, 0)
+        const blob = await canvasToBlob(canvas, originalFile?.type || 'image/png', 0.92)
+        setEstimatedSize(blob.size)
+      } catch { setEstimatedSize(null) }
+    }, 300)
+    return () => clearTimeout(estimateTimer.current)
+  }, [originalImage, brightness, contrast, saturate])
 
   const handleApply = async () => {
     if (!originalImage) return
@@ -80,6 +100,12 @@ export default function Adjust() {
                 Resetar valores
               </Button>
             </Card>
+
+            {estimatedSize && !processedBlob && (
+              <Card>
+                <p className="text-xs text-slate-500">Tamanho estimado: ~{formatFileSize(estimatedSize)}</p>
+              </Card>
+            )}
 
             <Button onClick={handleApply} disabled={processing} className="w-full" size="lg">
               Aplicar

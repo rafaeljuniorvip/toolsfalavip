@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ToolPageLayout from '../components/shared/ToolPageLayout'
 import DropZone from '../components/ui/DropZone'
 import Card from '../components/ui/Card'
@@ -21,18 +21,44 @@ const filters = [
   { id: 'bright', label: 'Claro', css: 'brightness(130%) contrast(110%)' },
   { id: 'dark', label: 'Escuro', css: 'brightness(70%) contrast(120%)' },
   { id: 'retro', label: 'Retrô', css: 'sepia(40%) hue-rotate(-30deg) saturate(120%)' },
+  { id: 'cinematic', label: 'Cinemático', css: 'contrast(130%) saturate(80%) brightness(90%) sepia(15%)' },
+  { id: 'sunset', label: 'Pôr do Sol', css: 'sepia(20%) saturate(150%) hue-rotate(-15deg) brightness(105%)' },
+  { id: 'ocean', label: 'Oceano', css: 'hue-rotate(200deg) saturate(120%) brightness(95%)' },
+  { id: 'neon', label: 'Neon', css: 'contrast(150%) saturate(200%) brightness(110%)' },
+  { id: 'noir', label: 'Noir', css: 'grayscale(100%) contrast(150%) brightness(80%)' },
+  { id: 'pastel', label: 'Pastel', css: 'saturate(60%) brightness(120%) contrast(90%)' },
 ]
 
 export default function Filters() {
   const { originalFile, originalImage, processedBlob, loadImage, setProcessedBlob, reset } = useImageProcessor()
   const [activeFilter, setActiveFilter] = useState('none')
   const [processing, setProcessing] = useState(false)
+  const [estimatedSize, setEstimatedSize] = useState(null)
+  const estimateTimer = useRef(null)
 
   const handleFiles = async ([file]) => {
     if (file) await loadImage(file)
   }
 
   const currentCss = filters.find(f => f.id === activeFilter)?.css || 'none'
+
+  useEffect(() => {
+    if (!originalImage) return
+    clearTimeout(estimateTimer.current)
+    estimateTimer.current = setTimeout(async () => {
+      try {
+        const canvas = document.createElement('canvas')
+        canvas.width = originalImage.naturalWidth
+        canvas.height = originalImage.naturalHeight
+        const ctx = canvas.getContext('2d')
+        if (currentCss !== 'none') ctx.filter = currentCss
+        ctx.drawImage(originalImage, 0, 0)
+        const blob = await canvasToBlob(canvas, originalFile?.type || 'image/png', 0.92)
+        setEstimatedSize(blob.size)
+      } catch { setEstimatedSize(null) }
+    }, 300)
+    return () => clearTimeout(estimateTimer.current)
+  }, [originalImage, activeFilter])
 
   const handleApply = async () => {
     if (!originalImage) return
@@ -101,6 +127,12 @@ export default function Filters() {
                 ))}
               </div>
             </Card>
+
+            {estimatedSize && !processedBlob && (
+              <Card>
+                <p className="text-xs text-slate-500">Tamanho estimado: ~{formatFileSize(estimatedSize)}</p>
+              </Card>
+            )}
 
             <Button onClick={handleApply} disabled={processing} className="w-full" size="lg">
               Aplicar

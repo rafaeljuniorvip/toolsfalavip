@@ -17,6 +17,19 @@ const aspectRatios = [
   { label: '16:9', value: 16 / 9 },
   { label: '3:2', value: 3 / 2 },
   { label: '2:3', value: 2 / 3 },
+  { label: '9:16', value: 9 / 16 },
+  { label: '2.63:1', value: 2.63 },
+  { label: '3:1', value: 3 },
+  { label: '4:1', value: 4 },
+]
+
+const presetGroups = [
+  { label: 'Instagram Post', value: 1 },
+  { label: 'Instagram Story', value: 9 / 16 },
+  { label: 'Facebook Cover', value: 2.63 },
+  { label: 'Twitter Header', value: 3 },
+  { label: 'YouTube Thumb', value: 16 / 9 },
+  { label: 'LinkedIn Banner', value: 4 },
 ]
 
 export default function Crop() {
@@ -94,6 +107,25 @@ export default function Crop() {
                       }`}
                   >
                     {r.label}
+                  </button>
+                ))}
+              </div>
+            </Card>
+
+            <Card>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Redes Sociais</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {presetGroups.map((p) => (
+                  <button
+                    key={p.label}
+                    onClick={() => handleRatio(p.value)}
+                    className={`px-2 py-1.5 text-[11px] font-medium rounded-lg border transition-colors cursor-pointer
+                      ${activeRatio === p.value
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'border-slate-200 hover:bg-gray-50'
+                      }`}
+                  >
+                    {p.label}
                   </button>
                 ))}
               </div>

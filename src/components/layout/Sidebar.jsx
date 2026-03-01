@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { X, Maximize2, Crop, FileType, RotateCw, Sun, Palette, Stamp, FileDown, FilePlus2, Scissors, RotateCcw, Home } from 'lucide-react'
+import { X, Maximize2, Crop, FileType, RotateCw, Sun, Palette, Stamp, FileDown, FilePlus2, Scissors, RotateCcw, Home, ImageDown, Frame, Binary, ImagePlus, Laugh, RectangleHorizontal, FileImage, ArrowUpDown, Images, Lock, QrCode, Pipette, SwatchBook, Type, ArrowLeftRight } from 'lucide-react'
 
 const imageTools = [
   { path: '/redimensionar', label: 'Redimensionar', icon: Maximize2 },
@@ -9,6 +9,12 @@ const imageTools = [
   { path: '/ajustar', label: 'Brilho / Contraste', icon: Sun },
   { path: '/filtros', label: 'Filtros', icon: Palette },
   { path: '/marca-dagua', label: 'Marca d\'Água', icon: Stamp },
+  { path: '/comprimir-imagem', label: 'Comprimir Imagem', icon: ImageDown },
+  { path: '/moldura', label: 'Moldura / Borda', icon: Frame },
+  { path: '/imagem-para-base64', label: 'Imagem → Base64', icon: Binary },
+  { path: '/base64-para-imagem', label: 'Base64 → Imagem', icon: ImagePlus },
+  { path: '/meme', label: 'Gerador de Memes', icon: Laugh },
+  { path: '/cantos-arredondados', label: 'Cantos Arredondados', icon: RectangleHorizontal },
 ]
 
 const pdfTools = [
@@ -16,6 +22,19 @@ const pdfTools = [
   { path: '/pdf-juntar', label: 'Juntar PDFs', icon: FilePlus2 },
   { path: '/pdf-dividir', label: 'Dividir PDF', icon: Scissors },
   { path: '/pdf-girar', label: 'Girar PDF', icon: RotateCcw },
+  { path: '/imagens-para-pdf', label: 'Imagens → PDF', icon: FileImage },
+  { path: '/pdf-marca-dagua', label: 'Marca d\'Água PDF', icon: Stamp },
+  { path: '/pdf-reordenar', label: 'Reordenar Páginas', icon: ArrowUpDown },
+  { path: '/pdf-para-imagens', label: 'PDF → Imagens', icon: Images },
+  { path: '/pdf-proteger', label: 'Proteger com Senha', icon: Lock },
+]
+
+const utilityTools = [
+  { path: '/qrcode', label: 'QR Code', icon: QrCode },
+  { path: '/extrair-cores', label: 'Extrator de Cores', icon: Pipette },
+  { path: '/paleta-cores', label: 'Paleta de Cores', icon: SwatchBook },
+  { path: '/lorem-ipsum', label: 'Lorem Ipsum', icon: Type },
+  { path: '/conversor', label: 'Conversor de Unidades', icon: ArrowLeftRight },
 ]
 
 function NavItem({ path, label, icon: Icon, onClick }) {
@@ -92,6 +111,15 @@ export default function Sidebar({ open, onClose }) {
             <p className="px-3 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">PDF</p>
             <div className="space-y-0.5">
               {pdfTools.map(tool => (
+                <NavItem key={tool.path} {...tool} onClick={onClose} />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="px-3 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">Utilidades</p>
+            <div className="space-y-0.5">
+              {utilityTools.map(tool => (
                 <NavItem key={tool.path} {...tool} onClick={onClose} />
               ))}
             </div>

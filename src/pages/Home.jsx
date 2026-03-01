@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Maximize2, Crop, FileType, RotateCw, Sun, Palette, Stamp, FileDown, FilePlus2, Scissors, RotateCcw } from 'lucide-react'
+import { Maximize2, Crop, FileType, RotateCw, Sun, Palette, Stamp, FileDown, FilePlus2, Scissors, RotateCcw, ImageDown, Frame, Binary, ImagePlus, Laugh, RectangleHorizontal, FileImage, ArrowUpDown, Images, Lock, QrCode, Pipette, SwatchBook, Type, ArrowLeftRight } from 'lucide-react'
 
 const imageTools = [
   { path: '/redimensionar', label: 'Redimensionar', desc: 'Altere o tamanho e comprima imagens', icon: Maximize2, color: 'bg-blue-50 text-blue-600' },
@@ -9,6 +9,12 @@ const imageTools = [
   { path: '/ajustar', label: 'Brilho / Contraste', desc: 'Ajuste brilho, contraste e saturação', icon: Sun, color: 'bg-yellow-50 text-yellow-700' },
   { path: '/filtros', label: 'Filtros', desc: 'Aplique filtros como sépia e P&B', icon: Palette, color: 'bg-pink-50 text-pink-600' },
   { path: '/marca-dagua', label: 'Marca d\'Água', desc: 'Adicione texto como marca d\'água', icon: Stamp, color: 'bg-indigo-50 text-indigo-600' },
+  { path: '/comprimir-imagem', label: 'Comprimir Imagem', desc: 'Reduza o tamanho com controle de qualidade', icon: ImageDown, color: 'bg-emerald-50 text-emerald-600' },
+  { path: '/moldura', label: 'Moldura / Borda', desc: 'Adicione bordas e cantos arredondados', icon: Frame, color: 'bg-violet-50 text-violet-600' },
+  { path: '/imagem-para-base64', label: 'Imagem → Base64', desc: 'Converta imagem para texto Base64', icon: Binary, color: 'bg-slate-100 text-slate-600' },
+  { path: '/base64-para-imagem', label: 'Base64 → Imagem', desc: 'Converta texto Base64 para imagem', icon: ImagePlus, color: 'bg-sky-50 text-sky-600' },
+  { path: '/meme', label: 'Gerador de Memes', desc: 'Texto no estilo meme clássico', icon: Laugh, color: 'bg-amber-50 text-amber-600' },
+  { path: '/cantos-arredondados', label: 'Cantos Arredondados', desc: 'Screenshots com cantos e sombra', icon: RectangleHorizontal, color: 'bg-rose-50 text-rose-600' },
 ]
 
 const pdfTools = [
@@ -16,6 +22,19 @@ const pdfTools = [
   { path: '/pdf-juntar', label: 'Juntar PDFs', desc: 'Combine múltiplos PDFs em um só', icon: FilePlus2, color: 'bg-teal-50 text-teal-600' },
   { path: '/pdf-dividir', label: 'Dividir PDF', desc: 'Separe páginas de um PDF', icon: Scissors, color: 'bg-cyan-50 text-cyan-600' },
   { path: '/pdf-girar', label: 'Girar PDF', desc: 'Rotacione páginas do PDF', icon: RotateCcw, color: 'bg-amber-50 text-amber-600' },
+  { path: '/imagens-para-pdf', label: 'Imagens → PDF', desc: 'Combine imagens em um único PDF', icon: FileImage, color: 'bg-blue-50 text-blue-600' },
+  { path: '/pdf-marca-dagua', label: 'Marca d\'Água PDF', desc: 'Adicione marca d\'água em PDFs', icon: Stamp, color: 'bg-purple-50 text-purple-600' },
+  { path: '/pdf-reordenar', label: 'Reordenar Páginas', desc: 'Altere a ordem das páginas', icon: ArrowUpDown, color: 'bg-indigo-50 text-indigo-600' },
+  { path: '/pdf-para-imagens', label: 'PDF → Imagens', desc: 'Converta páginas em PNG ou JPG', icon: Images, color: 'bg-green-50 text-green-600' },
+  { path: '/pdf-proteger', label: 'Proteger com Senha', desc: 'Adicione senha de proteção ao PDF', icon: Lock, color: 'bg-orange-50 text-orange-600' },
+]
+
+const utilityTools = [
+  { path: '/qrcode', label: 'QR Code', desc: 'Gere QR codes de texto, URL, Wi-Fi', icon: QrCode, color: 'bg-slate-100 text-slate-700' },
+  { path: '/extrair-cores', label: 'Extrator de Cores', desc: 'Extraia cores dominantes de imagens', icon: Pipette, color: 'bg-pink-50 text-pink-600' },
+  { path: '/paleta-cores', label: 'Paleta de Cores', desc: 'Gere paletas harmoniosas de cores', icon: SwatchBook, color: 'bg-violet-50 text-violet-600' },
+  { path: '/lorem-ipsum', label: 'Lorem Ipsum', desc: 'Gere texto placeholder para layouts', icon: Type, color: 'bg-emerald-50 text-emerald-600' },
+  { path: '/conversor', label: 'Conversor de Unidades', desc: 'Converta px, cm, mm, em, rem, pt', icon: ArrowLeftRight, color: 'bg-sky-50 text-sky-600' },
 ]
 
 function ToolCard({ path, label, desc, icon: Icon, color, index }) {
@@ -48,7 +67,7 @@ export default function Home() {
         </div>
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Tools FalaVIP</h1>
         <p className="text-slate-300 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-          Ferramentas gratuitas de imagem e PDF. Processamento 100% local, sem upload para servidores.
+          Ferramentas gratuitas de imagem, PDF e utilidades. Processamento 100% local, sem upload para servidores.
         </p>
         <div className="flex items-center justify-center gap-2 mt-5">
           <div className="w-2 h-2 rounded-full bg-green-500 shadow-sm shadow-green-500/50"></div>
@@ -69,7 +88,7 @@ export default function Home() {
       </section>
 
       {/* PDF Tools Section */}
-      <section className="mb-6">
+      <section className="mb-10">
         <div className="flex items-center gap-3 mb-5 px-1">
           <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest">Ferramentas de PDF</h2>
           <div className="flex-1 h-px bg-slate-200"></div>
@@ -77,6 +96,18 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {pdfTools.map((tool, i) => <ToolCard key={tool.path} {...tool} index={i + imageTools.length} />)}
+        </div>
+      </section>
+
+      {/* Utility Tools Section */}
+      <section className="mb-6">
+        <div className="flex items-center gap-3 mb-5 px-1">
+          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest">Utilidades</h2>
+          <div className="flex-1 h-px bg-slate-200"></div>
+          <span className="text-xs text-slate-400 font-medium">{utilityTools.length} tools</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {utilityTools.map((tool, i) => <ToolCard key={tool.path} {...tool} index={i + imageTools.length + pdfTools.length} />)}
         </div>
       </section>
     </div>

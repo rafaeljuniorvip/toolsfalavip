@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ToolPageLayout from '../components/shared/ToolPageLayout'
 import DropZone from '../components/ui/DropZone'
 import Card from '../components/ui/Card'
@@ -19,6 +19,8 @@ export default function Resize() {
   const [quality, setQuality] = useState(85)
   const [aspectRatio, setAspectRatio] = useState(1)
   const [processing, setProcessing] = useState(false)
+  const [estimatedSize, setEstimatedSize] = useState(null)
+  const estimateTimer = useRef(null)
 
   useEffect(() => {
     if (originalImage) {
@@ -27,6 +29,23 @@ export default function Resize() {
       setAspectRatio(originalImage.naturalWidth / originalImage.naturalHeight)
     }
   }, [originalImage])
+
+  useEffect(() => {
+    if (!originalImage || !width || !height) return
+    clearTimeout(estimateTimer.current)
+    estimateTimer.current = setTimeout(async () => {
+      try {
+        const canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+        const ctx = canvas.getContext('2d')
+        ctx.drawImage(originalImage, 0, 0, width, height)
+        const blob = await canvasToBlob(canvas, originalFile?.type === 'image/png' ? 'image/png' : 'image/jpeg', quality / 100)
+        setEstimatedSize(blob.size)
+      } catch { setEstimatedSize(null) }
+    }, 300)
+    return () => clearTimeout(estimateTimer.current)
+  }, [originalImage, width, height, quality])
 
   const handleFiles = async ([file]) => {
     if (file) await loadImage(file)
@@ -144,6 +163,12 @@ export default function Resize() {
             <Card>
               <Slider label="Qualidade" value={quality} onChange={setQuality} min={10} max={100} unit="%" />
             </Card>
+
+            {estimatedSize && !processedBlob && (
+              <Card>
+                <p className="text-xs text-slate-500">Tamanho estimado: ~{formatFileSize(estimatedSize)}</p>
+              </Card>
+            )}
 
             <Button onClick={handleProcess} disabled={processing} className="w-full" size="lg">
               {processing ? <LoadingSpinner size={18} /> : 'Aplicar'}
