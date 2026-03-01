@@ -27,7 +27,7 @@ function NavItem({ path, label, icon: Icon, onClick }) {
         `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
         ${isActive
           ? 'bg-blue-600/90 text-white shadow-lg shadow-blue-600/25'
-          : 'text-slate-400 hover:bg-white/8 hover:text-white'
+          : 'text-slate-400 hover:bg-white/10 hover:text-white'
         }`
       }
     >
@@ -70,7 +70,7 @@ export default function Sidebar({ open, onClose }) {
                 `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
                   ? 'bg-blue-600/90 text-white shadow-lg shadow-blue-600/25'
-                  : 'text-slate-400 hover:bg-white/8 hover:text-white'
+                  : 'text-slate-400 hover:bg-white/10 hover:text-white'
                 }`
               }
             >
