@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/rafaeljuniorvip/toolsfalavip:latest
+    networks:
+      - minha_rede
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.toolsfalavip.rule=Host(`tools.falavip.com.br`)"
+        - "traefik.http.routers.toolsfalavip.entrypoints=websecure"
+        - "traefik.http.routers.toolsfalavip.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.toolsfalavip.loadbalancer.server.port=3000"
+        - "traefik.docker.network=minha_rede"
+
+networks:
+  minha_rede:
+    external: true
