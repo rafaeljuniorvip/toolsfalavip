@@ -24,10 +24,10 @@ function NavItem({ path, label, icon: Icon, onClick }) {
       to={path}
       onClick={onClick}
       className={({ isActive }) =>
-        `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+        `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
         ${isActive
-          ? 'bg-blue-600 text-white'
-          : 'text-slate-500 hover:bg-gray-100 hover:text-slate-800'
+          ? 'bg-blue-600/90 text-white shadow-lg shadow-blue-600/25'
+          : 'text-slate-400 hover:bg-white/8 hover:text-white'
         }`
       }
     >
@@ -41,46 +41,46 @@ export default function Sidebar({ open, onClose }) {
   return (
     <>
       {open && (
-        <div className="fixed inset-0 bg-black/30 z-40 md:hidden" onClick={onClose} />
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden" onClick={onClose} />
       )}
       <aside className={`
-        fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200
+        fixed md:static inset-y-0 left-0 z-50 w-64 bg-slate-900 sidebar-glow
         flex flex-col transform transition-transform duration-200
         ${open ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
       `}>
-        <div className="h-14 flex items-center justify-between px-4 border-b border-slate-200">
-          <NavLink to="/" className="flex items-center gap-2" onClick={onClose}>
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
+        <div className="h-14 flex items-center justify-between px-4 border-b border-white/10">
+          <NavLink to="/" className="flex items-center gap-2.5" onClick={onClose}>
+            <div className="w-8 h-8 rounded-lg bg-blue-600 shadow-lg shadow-blue-600/30 flex items-center justify-center">
               <span className="text-white font-bold text-base">T</span>
             </div>
-            <span className="font-bold text-base text-slate-800">Tools FalaVIP</span>
+            <span className="font-bold text-base text-white">Tools FalaVIP</span>
           </NavLink>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 md:hidden cursor-pointer">
+          <button onClick={onClose} className="p-1 rounded-lg hover:bg-white/10 text-slate-400 md:hidden cursor-pointer">
             <X size={20} />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6 sidebar-scroll">
           <div>
             <NavLink
               to="/"
               end
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-slate-500 hover:bg-gray-100 hover:text-slate-800'
+                  ? 'bg-blue-600/90 text-white shadow-lg shadow-blue-600/25'
+                  : 'text-slate-400 hover:bg-white/8 hover:text-white'
                 }`
               }
             >
               <Home size={18} />
-              <span>Início</span>
+              <span>Inicio</span>
             </NavLink>
           </div>
 
           <div>
-            <p className="px-3 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Imagem</p>
+            <p className="px-3 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">Imagem</p>
             <div className="space-y-0.5">
               {imageTools.map(tool => (
                 <NavItem key={tool.path} {...tool} onClick={onClose} />
@@ -89,7 +89,7 @@ export default function Sidebar({ open, onClose }) {
           </div>
 
           <div>
-            <p className="px-3 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">PDF</p>
+            <p className="px-3 mb-2 text-[11px] font-semibold text-slate-500 uppercase tracking-widest">PDF</p>
             <div className="space-y-0.5">
               {pdfTools.map(tool => (
                 <NavItem key={tool.path} {...tool} onClick={onClose} />
@@ -98,10 +98,13 @@ export default function Sidebar({ open, onClose }) {
           </div>
         </nav>
 
-        <div className="px-4 py-3 border-t border-slate-200">
-          <p className="text-xs text-slate-500 text-center">
-            Processamento 100% local
-          </p>
+        <div className="px-4 py-3 border-t border-white/10">
+          <div className="flex items-center justify-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-sm shadow-green-500/50"></div>
+            <p className="text-[11px] text-slate-500">
+              Processamento 100% local
+            </p>
+          </div>
         </div>
       </aside>
     </>

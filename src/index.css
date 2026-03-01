@@ -8,10 +8,52 @@
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #f8fafc;
+  background-color: #f1f5f9;
   color: #1e293b;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle dot grid background pattern for content area */
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, #cbd5e1 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+}
+
+/* Gradient mesh background for hero sections */
+.bg-hero-gradient {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 50%, #1e293b 100%);
+}
+
+/* Gradient accent for page headers */
+.bg-header-accent {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #f5f3ff 100%);
+}
+
+/* Animated gradient border for dropzone */
+.dropzone-gradient-border {
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4) border-box;
+  border: 2px solid transparent;
+}
+
+.dropzone-gradient-border-active {
+  background: linear-gradient(#eff6ff, #eff6ff) padding-box,
+              linear-gradient(135deg, #2563eb, #7c3aed, #0891b2) border-box;
+  border: 2px solid transparent;
+}
+
+/* Sidebar glow separator */
+.sidebar-glow {
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15), 1px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Global smooth transitions */
+a, button, input, select, textarea {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 ::-webkit-scrollbar {
@@ -23,12 +65,21 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #64748b;
+}
+
+/* Sidebar scrollbar (dark) */
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 @keyframes slide-in {
@@ -45,3 +96,31 @@ body {
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
 }
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+/* Staggered animation delays for card grids */
+.stagger-1 { animation-delay: 0.03s; animation-fill-mode: backwards; }
+.stagger-2 { animation-delay: 0.06s; animation-fill-mode: backwards; }
+.stagger-3 { animation-delay: 0.09s; animation-fill-mode: backwards; }
+.stagger-4 { animation-delay: 0.12s; animation-fill-mode: backwards; }
+.stagger-5 { animation-delay: 0.15s; animation-fill-mode: backwards; }
+.stagger-6 { animation-delay: 0.18s; animation-fill-mode: backwards; }
+.stagger-7 { animation-delay: 0.21s; animation-fill-mode: backwards; }
+.stagger-8 { animation-delay: 0.24s; animation-fill-mode: backwards; }
+.stagger-9 { animation-delay: 0.27s; animation-fill-mode: backwards; }
+.stagger-10 { animation-delay: 0.30s; animation-fill-mode: backwards; }
+.stagger-11 { animation-delay: 0.33s; animation-fill-mode: backwards; }
