@@ -57,7 +57,7 @@ function ToolCard({ path, label, desc, icon: Icon, color, index }) {
 
 export default function Home() {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="w-full">
       {/* Hero Section */}
       <div className="bg-hero-gradient rounded-2xl p-8 md:p-10 mb-10 text-center shadow-xl shadow-slate-900/10 animate-fade-in-up">
         <div className="flex justify-center mb-4">

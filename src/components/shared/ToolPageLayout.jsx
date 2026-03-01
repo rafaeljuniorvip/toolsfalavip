@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function ToolPageLayout({ title, description, children }) {
   return (
-    <div className="max-w-6xl mx-auto animate-fade-in-up">
+    <div className="w-full animate-fade-in-up">
       <div className="mb-8">
         <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-blue-600 transition-all duration-200 mb-4 group">
           <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
