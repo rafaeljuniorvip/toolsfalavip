@@ -65,7 +65,7 @@ export default function RotateFlip() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -84,7 +84,7 @@ export default function RotateFlip() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-3">Rotação rápida</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Rotação rápida</h3>
               <div className="grid grid-cols-2 gap-2">
                 <Button variant="secondary" onClick={() => setRotation(r => r - 90)}>
                   <RotateCcw size={16} /> -90°
@@ -114,7 +114,7 @@ export default function RotateFlip() {
 
             {processedBlob && (
               <Card>
-                <p className="text-xs text-text-secondary">Tamanho: {formatFileSize(processedBlob.size)}</p>
+                <p className="text-xs text-slate-500">Tamanho: {formatFileSize(processedBlob.size)}</p>
               </Card>
             )}
 

@@ -58,7 +58,7 @@ export default function Crop() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Selecione a área de corte</span>
+                <span className="text-sm font-medium text-slate-800">Selecione a área de corte</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -81,7 +81,7 @@ export default function Crop() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-3">Proporção</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Proporção</h3>
               <div className="grid grid-cols-3 gap-2">
                 {aspectRatios.map((r) => (
                   <button
@@ -89,8 +89,8 @@ export default function Crop() {
                     onClick={() => handleRatio(r.value)}
                     className={`px-3 py-2 text-xs font-medium rounded-lg border transition-colors cursor-pointer
                       ${(isNaN(activeRatio) && isNaN(r.value)) || activeRatio === r.value
-                        ? 'bg-primary text-white border-primary'
-                        : 'border-border hover:bg-gray-50'
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'border-slate-200 hover:bg-gray-50'
                       }`}
                   >
                     {r.label}
@@ -106,7 +106,7 @@ export default function Crop() {
             {processedBlob && (
               <>
                 <Card>
-                  <p className="text-xs text-text-secondary">
+                  <p className="text-xs text-slate-500">
                     Tamanho: {formatFileSize(processedBlob.size)}
                   </p>
                 </Card>

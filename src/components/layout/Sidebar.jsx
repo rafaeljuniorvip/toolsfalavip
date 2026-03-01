@@ -26,8 +26,8 @@ function NavItem({ path, label, icon: Icon, onClick }) {
       className={({ isActive }) =>
         `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
         ${isActive
-          ? 'bg-primary text-white'
-          : 'text-text-secondary hover:bg-gray-100 hover:text-text'
+          ? 'bg-blue-600 text-white'
+          : 'text-slate-500 hover:bg-gray-100 hover:text-slate-800'
         }`
       }
     >
@@ -44,16 +44,16 @@ export default function Sidebar({ open, onClose }) {
         <div className="fixed inset-0 bg-black/30 z-40 md:hidden" onClick={onClose} />
       )}
       <aside className={`
-        fixed md:static inset-y-0 left-0 z-50 w-64 bg-surface border-r border-border
+        fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200
         flex flex-col transform transition-transform duration-200
         ${open ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0
       `}>
-        <div className="h-14 flex items-center justify-between px-4 border-b border-border">
+        <div className="h-14 flex items-center justify-between px-4 border-b border-slate-200">
           <NavLink to="/" className="flex items-center gap-2" onClick={onClose}>
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
               <span className="text-white font-bold text-base">T</span>
             </div>
-            <span className="font-bold text-base text-text">Tools FalaVIP</span>
+            <span className="font-bold text-base text-slate-800">Tools FalaVIP</span>
           </NavLink>
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-gray-100 md:hidden cursor-pointer">
             <X size={20} />
@@ -69,8 +69,8 @@ export default function Sidebar({ open, onClose }) {
               className={({ isActive }) =>
                 `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
                 ${isActive
-                  ? 'bg-primary text-white'
-                  : 'text-text-secondary hover:bg-gray-100 hover:text-text'
+                  ? 'bg-blue-600 text-white'
+                  : 'text-slate-500 hover:bg-gray-100 hover:text-slate-800'
                 }`
               }
             >
@@ -80,7 +80,7 @@ export default function Sidebar({ open, onClose }) {
           </div>
 
           <div>
-            <p className="px-3 mb-2 text-xs font-semibold text-text-secondary uppercase tracking-wider">Imagem</p>
+            <p className="px-3 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Imagem</p>
             <div className="space-y-0.5">
               {imageTools.map(tool => (
                 <NavItem key={tool.path} {...tool} onClick={onClose} />
@@ -89,7 +89,7 @@ export default function Sidebar({ open, onClose }) {
           </div>
 
           <div>
-            <p className="px-3 mb-2 text-xs font-semibold text-text-secondary uppercase tracking-wider">PDF</p>
+            <p className="px-3 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">PDF</p>
             <div className="space-y-0.5">
               {pdfTools.map(tool => (
                 <NavItem key={tool.path} {...tool} onClick={onClose} />
@@ -98,8 +98,8 @@ export default function Sidebar({ open, onClose }) {
           </div>
         </nav>
 
-        <div className="px-4 py-3 border-t border-border">
-          <p className="text-xs text-text-secondary text-center">
+        <div className="px-4 py-3 border-t border-slate-200">
+          <p className="text-xs text-slate-500 text-center">
             Processamento 100% local
           </p>
         </div>

@@ -61,7 +61,7 @@ export default function Filters() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -79,14 +79,14 @@ export default function Filters() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-3">Filtros</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Filtros</h3>
               <div className="grid grid-cols-3 gap-2">
                 {filters.map(f => (
                   <button
                     key={f.id}
                     onClick={() => setActiveFilter(f.id)}
                     className={`relative rounded-lg overflow-hidden border-2 transition-all cursor-pointer aspect-square
-                      ${activeFilter === f.id ? 'border-primary ring-2 ring-primary/20' : 'border-border hover:border-gray-300'}`}
+                      ${activeFilter === f.id ? 'border-blue-600 ring-2 ring-blue-600/20' : 'border-slate-200 hover:border-gray-300'}`}
                   >
                     <img
                       src={originalImage.src}
@@ -108,7 +108,7 @@ export default function Filters() {
 
             {processedBlob && (
               <Card>
-                <p className="text-xs text-text-secondary">Tamanho: {formatFileSize(processedBlob.size)}</p>
+                <p className="text-xs text-slate-500">Tamanho: {formatFileSize(processedBlob.size)}</p>
               </Card>
             )}
 

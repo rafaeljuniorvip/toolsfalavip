@@ -55,7 +55,7 @@ export default function Adjust() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -87,7 +87,7 @@ export default function Adjust() {
 
             {processedBlob && (
               <Card>
-                <p className="text-xs text-text-secondary">Tamanho: {formatFileSize(processedBlob.size)}</p>
+                <p className="text-xs text-slate-500">Tamanho: {formatFileSize(processedBlob.size)}</p>
               </Card>
             )}
 

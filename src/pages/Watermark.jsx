@@ -111,7 +111,7 @@ export default function Watermark() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -125,20 +125,20 @@ export default function Watermark() {
           <div className="space-y-4">
             <Card className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-text mb-1 block">Texto</label>
+                <label className="text-sm font-medium text-slate-800 mb-1 block">Texto</label>
                 <input
                   type="text"
                   value={text}
                   onChange={e => setText(e.target.value)}
                   placeholder="Sua marca d'água"
-                  className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20"
                 />
               </div>
               <Select label="Fonte" value={font} onChange={setFont} options={fonts} />
               <Slider label="Tamanho" value={fontSize} onChange={setFontSize} min={12} max={200} unit="px" />
               <Slider label="Opacidade" value={opacity} onChange={setOpacity} min={5} max={100} unit="%" />
               <div>
-                <label className="text-sm font-medium text-text mb-1 block">Cor</label>
+                <label className="text-sm font-medium text-slate-800 mb-1 block">Cor</label>
                 <input type="color" value={color} onChange={e => setColor(e.target.value)} className="w-10 h-8 rounded cursor-pointer" />
               </div>
             </Card>
@@ -147,7 +147,7 @@ export default function Watermark() {
               <Select label="Posição" value={position} onChange={setPosition} options={positions} />
               <label className="flex items-center gap-2 mt-3 cursor-pointer">
                 <input type="checkbox" checked={tile} onChange={e => setTile(e.target.checked)} className="rounded" />
-                <span className="text-sm text-text">Repetir em toda a imagem</span>
+                <span className="text-sm text-slate-800">Repetir em toda a imagem</span>
               </label>
             </Card>
 
@@ -157,7 +157,7 @@ export default function Watermark() {
 
             {processedBlob && (
               <Card>
-                <p className="text-xs text-text-secondary">Tamanho: {formatFileSize(processedBlob.size)}</p>
+                <p className="text-xs text-slate-500">Tamanho: {formatFileSize(processedBlob.size)}</p>
               </Card>
             )}
 

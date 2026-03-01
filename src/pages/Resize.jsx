@@ -86,7 +86,7 @@ export default function Resize() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -98,10 +98,10 @@ export default function Resize() {
                   className="max-w-full max-h-[500px] object-contain rounded"
                 />
               </div>
-              <div className="mt-3 flex gap-4 text-xs text-text-secondary">
+              <div className="mt-3 flex gap-4 text-xs text-slate-500">
                 <span>Original: {originalImage.naturalWidth}x{originalImage.naturalHeight} ({formatFileSize(originalFile.size)})</span>
                 {processedBlob && (
-                  <span className="text-primary font-medium">
+                  <span className="text-blue-600 font-medium">
                     Resultado: {width}x{height} ({formatFileSize(processedBlob.size)})
                   </span>
                 )}
@@ -111,31 +111,31 @@ export default function Resize() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-4">Dimensões</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-4">Dimensões</h3>
               <div className="flex items-end gap-2">
                 <div className="flex-1">
-                  <label className="text-xs text-text-secondary mb-1 block">Largura</label>
+                  <label className="text-xs text-slate-500 mb-1 block">Largura</label>
                   <input
                     type="number"
                     value={width}
                     onChange={e => handleWidthChange(e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20"
                   />
                 </div>
                 <button
                   onClick={() => setLockRatio(!lockRatio)}
-                  className="p-2 rounded-lg hover:bg-gray-100 text-text-secondary cursor-pointer mb-0.5"
+                  className="p-2 rounded-lg hover:bg-gray-100 text-slate-500 cursor-pointer mb-0.5"
                   title={lockRatio ? 'Desbloquear proporção' : 'Bloquear proporção'}
                 >
                   {lockRatio ? <Lock size={18} /> : <Unlock size={18} />}
                 </button>
                 <div className="flex-1">
-                  <label className="text-xs text-text-secondary mb-1 block">Altura</label>
+                  <label className="text-xs text-slate-500 mb-1 block">Altura</label>
                   <input
                     type="number"
                     value={height}
                     onChange={e => handleHeightChange(e.target.value)}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20"
                   />
                 </div>
               </div>

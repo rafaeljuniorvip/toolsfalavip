@@ -52,18 +52,18 @@ export default function DropZone({ onFiles, accept = 'image/*', multiple = false
       onDrop={handleDrop}
       className={`relative flex flex-col items-center justify-center gap-3 p-10 border-2 border-dashed rounded-xl cursor-pointer transition-all
         ${isDragging
-          ? 'border-primary bg-primary-light/50 scale-[1.01]'
-          : 'border-border hover:border-primary/40 hover:bg-gray-50'
+          ? 'border-blue-600 bg-blue-50 scale-[1.01]'
+          : 'border-slate-200 hover:border-blue-600/40 hover:bg-gray-50'
         }`}
     >
-      <div className={`p-3 rounded-full ${isDragging ? 'bg-primary/10' : 'bg-gray-100'}`}>
-        {isDragging ? <Upload size={28} className="text-primary" /> : <Icon size={28} className="text-text-secondary" />}
+      <div className={`p-3 rounded-full ${isDragging ? 'bg-blue-600/10' : 'bg-gray-100'}`}>
+        {isDragging ? <Upload size={28} className="text-blue-600" /> : <Icon size={28} className="text-slate-500" />}
       </div>
       <div className="text-center">
-        <p className="text-sm font-medium text-text">
+        <p className="text-sm font-medium text-slate-800">
           {label || (isDragging ? 'Solte o arquivo aqui' : 'Clique ou arraste um arquivo')}
         </p>
-        <p className="text-xs text-text-secondary mt-1">
+        <p className="text-xs text-slate-500 mt-1">
           {isImage && 'PNG, JPG, WebP, GIF'}
           {isPdf && 'Arquivo PDF'}
           {' '}

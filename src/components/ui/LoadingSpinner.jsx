@@ -1,7 +1,7 @@
 export default function LoadingSpinner({ size = 24, className = '' }) {
   return (
     <svg
-      className={`animate-spin text-primary ${className}`}
+      className={`animate-spin text-blue-600 ${className}`}
       width={size}
       height={size}
       viewBox="0 0 24 24"

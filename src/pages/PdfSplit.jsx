@@ -94,7 +94,7 @@ export default function PdfSplit() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-text">Arquivo selecionado</span>
+                <span className="text-sm font-medium text-slate-800">Arquivo selecionado</span>
                 <Button variant="ghost" size="sm" onClick={resetAll}>
                   <RotateCcw size={14} /> Novo arquivo
                 </Button>
@@ -104,8 +104,8 @@ export default function PdfSplit() {
                   <FileText size={32} className="text-red-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-text text-sm">{file.name}</p>
-                  <p className="text-xs text-text-secondary mt-0.5">
+                  <p className="font-medium text-slate-800 text-sm">{file.name}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">
                     {formatFileSize(file.size)} - {totalPages} página{totalPages !== 1 ? 's' : ''}
                   </p>
                 </div>
@@ -131,8 +131,8 @@ export default function PdfSplit() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-2">Páginas para extrair</h3>
-              <p className="text-xs text-text-secondary mb-3">
+              <h3 className="text-sm font-semibold text-slate-800 mb-2">Páginas para extrair</h3>
+              <p className="text-xs text-slate-500 mb-3">
                 Use vírgulas para separar e hífens para intervalos. Ex: 1-3, 5, 7-10
               </p>
               <input
@@ -140,9 +140,9 @@ export default function PdfSplit() {
                 value={rangeInput}
                 onChange={e => setRangeInput(e.target.value)}
                 placeholder="1-3, 5, 7-10"
-                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20"
               />
-              <p className="text-xs text-text-secondary mt-2">Total: {totalPages} páginas</p>
+              <p className="text-xs text-slate-500 mt-2">Total: {totalPages} páginas</p>
             </Card>
 
             <Button onClick={handleSplit} disabled={processing || !rangeInput.trim()} className="w-full" size="lg">

@@ -65,7 +65,7 @@ export default function PdfMerge() {
         <div className="lg:col-span-2">
           <Card>
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-medium text-text">Arquivos ({files.length})</span>
+              <span className="text-sm font-medium text-slate-800">Arquivos ({files.length})</span>
               {files.length > 0 && (
                 <Button variant="ghost" size="sm" onClick={resetAll}>
                   <RotateCcw size={14} /> Limpar
@@ -78,15 +78,15 @@ export default function PdfMerge() {
                 {files.map((file, i) => (
                   <div key={`${file.name}-${i}`} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                     <div className="flex flex-col gap-0.5">
-                      <button disabled={i === 0} onClick={() => moveFile(i, i - 1)} className="text-text-secondary hover:text-text disabled:opacity-30 cursor-pointer text-xs">▲</button>
-                      <button disabled={i === files.length - 1} onClick={() => moveFile(i, i + 1)} className="text-text-secondary hover:text-text disabled:opacity-30 cursor-pointer text-xs">▼</button>
+                      <button disabled={i === 0} onClick={() => moveFile(i, i - 1)} className="text-slate-500 hover:text-slate-800 disabled:opacity-30 cursor-pointer text-xs">▲</button>
+                      <button disabled={i === files.length - 1} onClick={() => moveFile(i, i + 1)} className="text-slate-500 hover:text-slate-800 disabled:opacity-30 cursor-pointer text-xs">▼</button>
                     </div>
                     <FileText size={18} className="text-red-500 shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-text truncate">{file.name}</p>
-                      <p className="text-xs text-text-secondary">{formatFileSize(file.size)}</p>
+                      <p className="text-sm font-medium text-slate-800 truncate">{file.name}</p>
+                      <p className="text-xs text-slate-500">{formatFileSize(file.size)}</p>
                     </div>
-                    <button onClick={() => removeFile(i)} className="text-text-secondary hover:text-danger cursor-pointer">
+                    <button onClick={() => removeFile(i)} className="text-slate-500 hover:text-red-600 cursor-pointer">
                       <X size={16} />
                     </button>
                   </div>
@@ -107,7 +107,7 @@ export default function PdfMerge() {
 
         <div className="space-y-4">
           <Card>
-            <p className="text-sm text-text-secondary">
+            <p className="text-sm text-slate-500">
               Adicione 2 ou mais PDFs e ordene-os na sequência desejada. O processamento é feito localmente no seu navegador.
             </p>
           </Card>

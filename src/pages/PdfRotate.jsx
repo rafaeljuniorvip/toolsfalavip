@@ -93,7 +93,7 @@ export default function PdfRotate() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-text">Arquivo selecionado</span>
+                <span className="text-sm font-medium text-slate-800">Arquivo selecionado</span>
                 <Button variant="ghost" size="sm" onClick={resetAll}>
                   <RotateCcw size={14} /> Novo arquivo
                 </Button>
@@ -103,8 +103,8 @@ export default function PdfRotate() {
                   <FileText size={32} className="text-red-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-text text-sm">{file.name}</p>
-                  <p className="text-xs text-text-secondary mt-0.5">
+                  <p className="font-medium text-slate-800 text-sm">{file.name}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">
                     {formatFileSize(file.size)} - {totalPages} página{totalPages !== 1 ? 's' : ''}
                   </p>
                 </div>
@@ -125,7 +125,7 @@ export default function PdfRotate() {
             </Card>
 
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-3">Aplicar em</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Aplicar em</h3>
               <div className="space-y-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="radio" name="applyTo" value="all" checked={applyTo === 'all'} onChange={() => setApplyTo('all')} />
@@ -142,7 +142,7 @@ export default function PdfRotate() {
                   value={specificPages}
                   onChange={e => setSpecificPages(e.target.value)}
                   placeholder="1, 3-5, 7"
-                  className="w-full mt-2 px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="w-full mt-2 px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/20"
                 />
               )}
             </Card>

@@ -53,7 +53,7 @@ export default function Convert() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-text">Preview</span>
+                <span className="text-sm font-medium text-slate-800">Preview</span>
                 <Button variant="ghost" size="sm" onClick={reset}>
                   <RotateCcw size={14} /> Nova imagem
                 </Button>
@@ -61,10 +61,10 @@ export default function Convert() {
               <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center min-h-[300px]">
                 <img src={originalImage.src} alt="Preview" className="max-w-full max-h-[500px] object-contain rounded" />
               </div>
-              <div className="mt-3 flex gap-4 text-xs text-text-secondary">
+              <div className="mt-3 flex gap-4 text-xs text-slate-500">
                 <span>Original: {originalFile.name} ({formatFileSize(originalFile.size)})</span>
                 {processedBlob && (
-                  <span className="text-primary font-medium">
+                  <span className="text-blue-600 font-medium">
                     Convertido: .{format} ({formatFileSize(processedBlob.size)})
                   </span>
                 )}

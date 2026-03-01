@@ -66,7 +66,7 @@ export default function PdfCompress() {
           <div className="lg:col-span-2">
             <Card>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-text">Arquivo selecionado</span>
+                <span className="text-sm font-medium text-slate-800">Arquivo selecionado</span>
                 <Button variant="ghost" size="sm" onClick={resetAll}>
                   <RotateCcw size={14} /> Novo arquivo
                 </Button>
@@ -76,8 +76,8 @@ export default function PdfCompress() {
                   <FileDown size={32} className="text-red-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-text text-sm">{file.name}</p>
-                  <p className="text-xs text-text-secondary mt-0.5">Tamanho: {formatFileSize(file.size)}</p>
+                  <p className="font-medium text-slate-800 text-sm">{file.name}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">Tamanho: {formatFileSize(file.size)}</p>
                 </div>
               </div>
               {result && (
@@ -101,7 +101,7 @@ export default function PdfCompress() {
 
           <div className="space-y-4">
             <Card>
-              <h3 className="text-sm font-semibold text-text mb-3">Nível de compressão</h3>
+              <h3 className="text-sm font-semibold text-slate-800 mb-3">Nível de compressão</h3>
               <div className="space-y-2">
                 {levels.map(l => (
                   <button
@@ -109,12 +109,12 @@ export default function PdfCompress() {
                     onClick={() => setLevel(l.value)}
                     className={`w-full text-left px-3 py-2.5 rounded-lg border transition-colors cursor-pointer
                       ${level === l.value
-                        ? 'border-primary bg-primary-light/50 text-primary'
-                        : 'border-border hover:bg-gray-50'
+                        ? 'border-blue-600 bg-blue-50 text-blue-600'
+                        : 'border-slate-200 hover:bg-gray-50'
                       }`}
                   >
                     <p className="text-sm font-medium">{l.label}</p>
-                    <p className="text-xs text-text-secondary mt-0.5">{l.desc}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{l.desc}</p>
                   </button>
                 ))}
               </div>
